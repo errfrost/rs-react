@@ -30,6 +30,6 @@
     "baseUrl": "./src",
     "resolveJsonModule": true
   },
-  "include": [".eslintrc.json", "./src/**/*", "styled.d.ts", "src"],
+  "include": ["vite.config.ts", ".eslintrc.json", "./src/**/*", "styled.d.ts", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
