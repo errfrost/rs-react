@@ -46,7 +46,7 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./rs-react/tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "plugins": ["@typescript-eslint", "react", "prettier", "react-hooks"],
   "rules": {
