@@ -5,7 +5,7 @@ export default function RootLayout() {
     <div>
       <header>
         <nav>
-          <h1>Jobarouter</h1>
+          <h1>RSS - React</h1>
           <NavLink to="/">Home</NavLink>
           <NavLink to="about">About</NavLink>
         </nav>
