@@ -57,7 +57,7 @@ header nav a.active {
 /* page content */
 main {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 /* help layout */
@@ -189,10 +189,11 @@ form label span {
   padding: 6px;
   border-radius: 5px;
   width: 200px;
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
 }
 
-.search__input:hover, .search__input:focus {
+.search__input:hover,
+.search__input:focus {
   box-shadow: 0 0 1em #00000013;
 }
 
@@ -225,4 +226,73 @@ form label span {
   height: 1.3em;
   width: 1.3em;
   fill: #b4b4b4;
+}
+
+/* card */
+.product-card {
+  width: 245px;
+  text-align: center;
+  background-color: #000;
+  border-radius: 5px;
+  margin: 0 10px;
+  margin-bottom: 20px;
+}
+
+.product-card__body {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card__title {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 120%;
+}
+
+.product-card__thumbnail img {
+  object-fit: cover;
+}
+
+.product-card__price {
+  color: #bc4123;
+}
+
+.product-card__category,
+.product-card__brand {
+  text-transform: capitalize;
+}
+
+.product-card__rating {
+  margin-bottom: 12px;
+}
+
+.product-card__rating b {
+  font-weight: 400;
+  color: #bc4123;
+}
+
+.product-card__buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.product-card__button {
+  font-weight: 700;
+  width: 87px;
+  border: none;
+  padding: 13px 0;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Products */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }

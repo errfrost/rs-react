@@ -1,5 +1,11 @@
+import ProductsWrapper from '../components/productsWrapper';
 import SearchBox from '../components/search';
 
 export default function Home() {
-  return <SearchBox />;
+  return (
+    <>
+      <SearchBox />
+      <ProductsWrapper />
+    </>
+  );
 }
