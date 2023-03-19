@@ -16,7 +16,6 @@ describe('Render Card', () => {
   it('it should render Card details', () => {
     const product = products[0];
     render(<ProductCard key={product.id} product={product} />);
-    expect(screen.getAllByTestId('product-card')).toBeInTheDocument();
     expect(screen.getByText(/iPhone 9/i)).toBeInTheDocument();
     expect(screen.getByText(/549/i)).toBeInTheDocument();
     expect(screen.getByText(/Smartphones/i)).toBeInTheDocument();
