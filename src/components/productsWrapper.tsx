@@ -6,7 +6,7 @@ interface Props {
   products: IProductCard[];
 }
 
-function ProductList({ products }: Props) {
+export function ProductList({ products }: Props) {
   return (
     <>
       {products.map((product) => (
