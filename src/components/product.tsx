@@ -13,7 +13,7 @@ export default class ProductCard extends React.Component<Props> {
   render() {
     const { product } = this.props;
     return (
-      <div className="product-card">
+      <div className="product-card" data-testid="product-card">
         <h3 className="product-card__title">{product.title}</h3>
         <div className="product-card__thumbnail">
           <img src={product.thumbnail} width="245" height="245" alt="" />

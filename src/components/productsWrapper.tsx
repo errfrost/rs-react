@@ -23,7 +23,7 @@ export default class ProductsWrapper extends React.Component<object, IProducts> 
   }
 
   componentDidMount() {
-    fetch(`./data/products.json`)
+    fetch(`${window.location.protocol}//${window.location.host}/data/products.json`)
       .then((resp) => resp.json())
       .then((data) => this.setState({ products: data.products }));
   }
