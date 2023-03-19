@@ -9,7 +9,7 @@
     "lint": "eslint **/*.tsx",
     "preview": "vite preview",
     "test": "vitest",
-    "test-cover": "vitest --coverage"
+    "test-cover": "vitest --coverage.all"
   },
   "dependencies": {
     "react": "^18.2.0",
