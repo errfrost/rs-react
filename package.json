@@ -8,8 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint **/*.tsx",
     "preview": "vite preview",
-    "test": "vitest",
-    "test-cover": "vitest --coverage.all"
+    "test": "vitest --coverage"
   },
   "dependencies": {
     "react": "^18.2.0",
