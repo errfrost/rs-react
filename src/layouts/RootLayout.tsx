@@ -7,6 +7,7 @@ export default function RootLayout() {
         <nav>
           <h1>RSS - React</h1>
           <NavLink to="/">Home</NavLink>
+          <NavLink to="forms">Forms</NavLink>
           <NavLink to="about">About</NavLink>
         </nav>
       </header>
