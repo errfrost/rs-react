@@ -6,8 +6,32 @@ interface FormState {
 }
 
 export default class Form extends React.Component<object, FormState> {
-  constructor({ card }: FormState) {
-    super({ card });
+  private firstNameRef: React.RefObject<HTMLInputElement>;
+
+  private lastNameRef: React.RefObject<HTMLInputElement>;
+
+  private birthdayRef: React.RefObject<HTMLInputElement>;
+
+  private countryRef: React.RefObject<HTMLSelectElement>;
+
+  private maleRef: React.RefObject<HTMLInputElement>;
+
+  private femaleRef: React.RefObject<HTMLInputElement>;
+
+  private photoRef: React.RefObject<HTMLInputElement>;
+
+  private confirmDataRef: React.RefObject<HTMLInputElement>;
+
+  constructor(card: FormState) {
+    super(card);
+    this.firstNameRef = React.createRef();
+    this.lastNameRef = React.createRef();
+    this.birthdayRef = React.createRef();
+    this.countryRef = React.createRef();
+    this.maleRef = React.createRef();
+    this.femaleRef = React.createRef();
+    this.photoRef = React.createRef();
+    this.confirmDataRef = React.createRef();
   }
 
   render() {
@@ -15,22 +39,22 @@ export default class Form extends React.Component<object, FormState> {
       <form className="form">
         <div className="block">
           <span>Fist Name:</span>
-          <input type="text" name="firstName" required />
+          <input ref={this.firstNameRef} type="text" name="firstName" required />
         </div>
 
         <div className="block">
           <span>Last Name:</span>
-          <input type="text" name="lastName" required />
+          <input ref={this.lastNameRef} type="text" name="lastName" required />
         </div>
 
         <div className="block">
           <span>Birthday:</span>
-          <input type="date" name="birthday" required />
+          <input ref={this.birthdayRef} type="date" name="birthday" required />
         </div>
 
         <div className="block">
           <span>Country:</span>
-          <select name="country">
+          <select ref={this.countryRef} name="country">
             <option value="Kyrgyzstan">Kyrgyzstan</option>
             <option value="Kazakhstan">Kazakhstan</option>
             <option value="Uzbekistan">Uzbekistan</option>
@@ -42,19 +66,19 @@ export default class Form extends React.Component<object, FormState> {
 
         <div className="inline">
           <span>Male</span>
-          <input type="radio" name="sex" id="male" value="male" />
+          <input ref={this.maleRef} type="radio" name="gender" id="male" value="male" />
           <span>Female</span>
-          <input type="radio" name="sex" id="female" value="female" />
+          <input ref={this.femaleRef} type="radio" name="gender" id="female" value="female" />
         </div>
 
         <div className="inline">
           <span>Photo</span>
-          <input type="file" name="photo" accept="image/png, image/jpeg" />
+          <input ref={this.photoRef} type="file" name="photo" accept="image/png, image/jpeg" />
         </div>
 
         <div className="inline">
           <span>I confirm my personal data:</span>
-          <input type="checkbox" name="confirmData" />
+          <input ref={this.confirmDataRef} type="checkbox" name="confirmData" />
         </div>
 
         <button type="submit">Submit</button>
