@@ -12,6 +12,16 @@ export interface IProductCard {
   images: string[];
 }
 
+export interface ICard {
+  firstName: string;
+  lastName: string;
+  birthday: string;
+  country: string;
+  gender: string;
+  photo: string;
+  confirmData: string;
+}
+
 export interface IProducts {
   [key: string]: IProductCard[];
 }
