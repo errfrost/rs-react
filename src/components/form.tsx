@@ -10,9 +10,15 @@ export default class Form extends React.Component<NewCard, ICard> {
 
   private firstNameRef: React.RefObject<HTMLInputElement>;
 
+  private firstNameError: React.RefObject<HTMLSpanElement>;
+
   private lastNameRef: React.RefObject<HTMLInputElement>;
 
+  private lastNameError: React.RefObject<HTMLSpanElement>;
+
   private birthdayRef: React.RefObject<HTMLInputElement>;
+
+  private birthdayError: React.RefObject<HTMLSpanElement>;
 
   private countryRef: React.RefObject<HTMLSelectElement>;
 
@@ -24,17 +30,25 @@ export default class Form extends React.Component<NewCard, ICard> {
 
   private confirmDataRef: React.RefObject<HTMLInputElement>;
 
+  private confirmError: React.RefObject<HTMLSpanElement>;
+
   constructor(props: NewCard) {
     super(props);
+
     this.formRef = React.createRef();
     this.firstNameRef = React.createRef();
+    this.firstNameError = React.createRef();
     this.lastNameRef = React.createRef();
+    this.lastNameError = React.createRef();
     this.birthdayRef = React.createRef();
+    this.birthdayError = React.createRef();
     this.countryRef = React.createRef();
     this.maleRef = React.createRef();
     this.femaleRef = React.createRef();
     this.photoRef = React.createRef();
     this.confirmDataRef = React.createRef();
+    this.confirmError = React.createRef();
+
     this.state = {
       firstName: '',
       lastName: '',
@@ -49,10 +63,12 @@ export default class Form extends React.Component<NewCard, ICard> {
   handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const { newCard } = this.props;
-    newCard(this.state);
-    // eslint-disable-next-line no-alert
-    alert('data has been saved');
-    this.formRef.current?.reset();
+    if (this.formValid()) {
+      newCard(this.state);
+      // eslint-disable-next-line no-alert
+      alert('data has been saved');
+      this.formRef.current?.reset();
+    }
   }
 
   handleChange(event: FormEvent<HTMLFormElement>) {
@@ -71,6 +87,46 @@ export default class Form extends React.Component<NewCard, ICard> {
     });
   }
 
+  formValid(): boolean {
+    const firstNameError = this.firstNameError.current;
+    if (
+      this.firstNameRef.current?.value.charAt(0) !==
+      this.firstNameRef.current?.value.charAt(0).toUpperCase()
+    ) {
+      firstNameError!.style.display = 'block';
+      return false;
+    }
+    firstNameError!.style.display = 'none';
+
+    const lastNameError = this.lastNameError.current;
+    if (
+      this.lastNameRef.current?.value.charAt(0) !==
+      this.lastNameRef.current?.value.charAt(0).toUpperCase()
+    ) {
+      lastNameError!.style.display = 'block';
+      return false;
+    }
+    lastNameError!.style.display = 'none';
+
+    const birthdayError = this.birthdayError.current;
+    const todaysDate = new Date();
+    const date = new Date(this.birthdayRef.current!.value);
+    if (date >= todaysDate) {
+      birthdayError!.style.display = 'block';
+      return false;
+    }
+    birthdayError!.style.display = 'none';
+
+    const confirmError = this.confirmError.current;
+    if (!this.confirmDataRef.current!.checked) {
+      confirmError!.style.display = 'block';
+      return false;
+    }
+    confirmError!.style.display = 'none';
+
+    return true;
+  }
+
   render() {
     return (
       <form
@@ -82,16 +138,25 @@ export default class Form extends React.Component<NewCard, ICard> {
         <div className="block">
           <span>Fist Name:</span>
           <input ref={this.firstNameRef} type="text" name="firstName" required />
+          <span ref={this.firstNameError} className="error">
+            First Name should start from capital letter
+          </span>
         </div>
 
         <div className="block">
           <span>Last Name:</span>
           <input ref={this.lastNameRef} type="text" name="lastName" required />
+          <span ref={this.lastNameError} className="error">
+            Last Name should start from capital letter
+          </span>
         </div>
 
         <div className="block">
           <span>Birthday:</span>
           <input ref={this.birthdayRef} type="date" name="birthday" required />
+          <span ref={this.birthdayError} className="error">
+            Date should be lower than today
+          </span>
         </div>
 
         <div className="block">
@@ -122,12 +187,21 @@ export default class Form extends React.Component<NewCard, ICard> {
 
         <div className="inline">
           <span>Photo</span>
-          <input ref={this.photoRef} type="file" name="photo" accept="image/png, image/jpeg" />
+          <input
+            ref={this.photoRef}
+            type="file"
+            name="photo"
+            accept="image/png, image/jpeg"
+            required
+          />
         </div>
 
         <div className="inline">
           <span>I confirm my personal data:</span>
           <input ref={this.confirmDataRef} type="checkbox" name="confirmData" />
+          <span ref={this.confirmError} className="error">
+            Please confirm your personal information
+          </span>
         </div>
 
         <button type="submit">Submit</button>

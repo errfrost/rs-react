@@ -255,3 +255,9 @@ form textarea {
   column-gap: 30px;
   margin-top: 30px;
 }
+
+.error {
+  font-size: 14px;
+  color: #bc4123;
+  display: none;
+}
