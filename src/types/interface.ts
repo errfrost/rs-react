@@ -19,7 +19,7 @@ export interface ICard {
   country: string;
   gender: string;
   photo: string;
-  confirmData: string;
+  confirmData: boolean;
 }
 
 export interface IProducts {
