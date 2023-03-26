@@ -172,7 +172,7 @@ export default class Form extends React.Component<NewCard, ICard> {
         </div>
 
         <div className="inline">
-          <span>Male</span>
+          <span>Male:</span>
           <input
             ref={this.maleRef}
             type="radio"
@@ -181,12 +181,12 @@ export default class Form extends React.Component<NewCard, ICard> {
             value="male"
             defaultChecked
           />
-          <span>Female</span>
+          <span>Female:</span>
           <input ref={this.femaleRef} type="radio" name="gender" id="female" value="female" />
         </div>
 
         <div className="inline">
-          <span>Photo</span>
+          <span>Photo:</span>
           <input
             ref={this.photoRef}
             type="file"
