@@ -91,8 +91,10 @@ export default class Form extends React.Component<NewCard, ICard> {
   }
 
   formValid(): boolean {
+    const letters = /^[A-Za-z]+$/;
     const firstNameError = this.firstNameError.current;
     if (
+      !this.firstNameRef.current?.value.match(letters) ||
       this.firstNameRef.current?.value.charAt(0) !==
         this.firstNameRef.current?.value.charAt(0).toUpperCase() ||
       this.firstNameRef.current?.value === ''
@@ -104,6 +106,7 @@ export default class Form extends React.Component<NewCard, ICard> {
 
     const lastNameError = this.lastNameError.current;
     if (
+      !this.lastNameRef.current?.value.match(letters) ||
       this.lastNameRef.current?.value.charAt(0) !==
         this.lastNameRef.current?.value.charAt(0).toUpperCase() ||
       this.lastNameRef.current?.value === ''
@@ -151,7 +154,7 @@ export default class Form extends React.Component<NewCard, ICard> {
           <span>Fist Name:</span>
           <input ref={this.firstNameRef} type="text" name="firstName" />
           <span ref={this.firstNameError} className="error">
-            First Name is required field and should start from capital letter
+            First Name is required field and should start from capital letter(only letters allowed)
           </span>
         </div>
 
@@ -159,7 +162,7 @@ export default class Form extends React.Component<NewCard, ICard> {
           <span>Last Name:</span>
           <input ref={this.lastNameRef} type="text" name="lastName" />
           <span ref={this.lastNameError} className="error">
-            Last Name is required field and should start from capital letter
+            Last Name is required field and should start from capital letter(only letters allowed)
           </span>
         </div>
 
