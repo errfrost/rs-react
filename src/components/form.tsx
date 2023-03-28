@@ -28,6 +28,8 @@ export default class Form extends React.Component<NewCard, ICard> {
 
   private photoRef: React.RefObject<HTMLInputElement>;
 
+  private photoError: React.RefObject<HTMLSpanElement>;
+
   private confirmDataRef: React.RefObject<HTMLInputElement>;
 
   private confirmError: React.RefObject<HTMLSpanElement>;
@@ -46,6 +48,7 @@ export default class Form extends React.Component<NewCard, ICard> {
     this.maleRef = React.createRef();
     this.femaleRef = React.createRef();
     this.photoRef = React.createRef();
+    this.photoError = React.createRef();
     this.confirmDataRef = React.createRef();
     this.confirmError = React.createRef();
 
@@ -113,11 +116,18 @@ export default class Form extends React.Component<NewCard, ICard> {
     const birthdayError = this.birthdayError.current;
     const todaysDate = new Date();
     const date = new Date(this.birthdayRef.current!.value);
-    if (date >= todaysDate) {
+    if (date.toString() === 'Invalid Date' || date >= todaysDate) {
       birthdayError!.style.display = 'block';
       return false;
     }
     birthdayError!.style.display = 'none';
+
+    const photoError = this.photoError.current;
+    if (!this.photoRef.current!.files?.length) {
+      photoError!.style.display = 'block';
+      return false;
+    }
+    photoError!.style.display = 'none';
 
     const confirmError = this.confirmError.current;
     if (!this.confirmDataRef.current!.checked) {
@@ -155,7 +165,7 @@ export default class Form extends React.Component<NewCard, ICard> {
 
         <div className="block">
           <span>Birthday:</span>
-          <input ref={this.birthdayRef} type="date" name="birthday" required />
+          <input ref={this.birthdayRef} type="date" name="birthday" />
           <span ref={this.birthdayError} className="error">
             Date should be lower than today
           </span>
@@ -189,13 +199,10 @@ export default class Form extends React.Component<NewCard, ICard> {
 
         <div className="inline">
           <span>Photo:</span>
-          <input
-            ref={this.photoRef}
-            type="file"
-            name="photo"
-            accept="image/png, image/jpeg"
-            required
-          />
+          <input ref={this.photoRef} type="file" name="photo" accept="image/png, image/jpeg" />
+          <span ref={this.photoError} className="error">
+            Select file
+          </span>
         </div>
 
         <div className="inline">
