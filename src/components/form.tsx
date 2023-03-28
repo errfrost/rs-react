@@ -91,7 +91,8 @@ export default class Form extends React.Component<NewCard, ICard> {
     const firstNameError = this.firstNameError.current;
     if (
       this.firstNameRef.current?.value.charAt(0) !==
-      this.firstNameRef.current?.value.charAt(0).toUpperCase()
+        this.firstNameRef.current?.value.charAt(0).toUpperCase() ||
+      this.firstNameRef.current?.value === ''
     ) {
       firstNameError!.style.display = 'block';
       return false;
@@ -101,7 +102,8 @@ export default class Form extends React.Component<NewCard, ICard> {
     const lastNameError = this.lastNameError.current;
     if (
       this.lastNameRef.current?.value.charAt(0) !==
-      this.lastNameRef.current?.value.charAt(0).toUpperCase()
+        this.lastNameRef.current?.value.charAt(0).toUpperCase() ||
+      this.lastNameRef.current?.value === ''
     ) {
       lastNameError!.style.display = 'block';
       return false;
@@ -137,17 +139,17 @@ export default class Form extends React.Component<NewCard, ICard> {
       >
         <div className="block">
           <span>Fist Name:</span>
-          <input ref={this.firstNameRef} type="text" name="firstName" required />
+          <input ref={this.firstNameRef} type="text" name="firstName" />
           <span ref={this.firstNameError} className="error">
-            First Name should start from capital letter
+            First Name is required field and should start from capital letter
           </span>
         </div>
 
         <div className="block">
           <span>Last Name:</span>
-          <input ref={this.lastNameRef} type="text" name="lastName" required />
+          <input ref={this.lastNameRef} type="text" name="lastName" />
           <span ref={this.lastNameError} className="error">
-            Last Name should start from capital letter
+            Last Name is required field and should start from capital letter
           </span>
         </div>
 
