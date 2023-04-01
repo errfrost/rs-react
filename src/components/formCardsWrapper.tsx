@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from './form';
 import { ICard } from '../types/interface';
 import FormCard from './formCard';
@@ -30,24 +30,17 @@ export function FormCards({ cards }: Props) {
   );
 }
 
-export default class FormCardsWrapper extends React.Component<object, Props> {
-  constructor(props = {}) {
-    super(props);
-    this.state = { cards: [] };
-  }
+export default function FormCardsWrapper() {
+  const [cards, setCards] = useState<ICard[]>([]);
 
-  newCard = (card: ICard) => {
-    const { cards } = this.state;
-    this.setState({ cards: [...cards, card] });
+  const newCard = (card: ICard) => {
+    setCards([...cards, card]);
   };
 
-  render() {
-    const { cards } = this.state;
-    return (
-      <div className="forms">
-        <Form newCard={this.newCard} />
-        <FormCards cards={cards} />
-      </div>
-    );
-  }
+  return (
+    <div className="forms">
+      <Form newCard={newCard} />
+      <FormCards cards={cards} />
+    </div>
+  );
 }
