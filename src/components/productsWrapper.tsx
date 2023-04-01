@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IProducts, IProductCard } from 'types/interface';
 import ProductCard from './product';
 
@@ -16,20 +16,13 @@ export function ProductList({ products }: Props) {
   );
 }
 
-export default class ProductsWrapper extends React.Component<object, IProducts> {
-  constructor(props = {}) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
+export default function ProductsWrapper() {
+  const [products, setProducts] = useState<IProductCard[]>([]);
+  useEffect(() => {
     fetch(`${window.location.protocol}//${window.location.host}/data/products.json`)
       .then((resp) => resp.json())
-      .then((data) => this.setState({ products: data.products }));
-  }
+      .then((data) => setProducts(data.products));
+  });
 
-  render() {
-    const { products } = this.state;
-    return <div className="products">{products && <ProductList products={products} />}</div>;
-  }
+  return <div className="products">{products && <ProductList products={products} />}</div>;
 }
