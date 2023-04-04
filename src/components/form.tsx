@@ -12,9 +12,11 @@ export default function Form(newCard: NewCard) {
   const onSubmit = (card: ICard) => {
     const formData = {
       ...card,
-      photo: card.photo[0],
+      photo: URL.createObjectURL(new Blob ([card.photo[0]])),
+      
     };
     newCard.newCard(formData);
+    alert('Card created successfully')
     reset();
   };
 
